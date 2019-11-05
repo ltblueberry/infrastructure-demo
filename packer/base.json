@@ -1,0 +1,21 @@
+{
+    "builders": [{
+        "type": "googlecompute",
+        "project_id": "infra-258109",
+        "image_name": "nodejs-base-{{timestamp}}",
+        "image_family": "nodejs-base",
+        "source_image_family": "ubuntu-1604-lts",
+        "zone": "europe-west4-b",
+        "ssh_username": "appuser",
+        "machine_type": "f1-micro"
+    }],
+    "provisioners": [{
+        "type": "shell",
+        "script": "scripts/install_nodejs.sh",
+        "execute_command": "sudo {{.Path}}"
+    }, {
+        "type": "shell",
+        "script": "scripts/install_mongodb.sh",
+        "execute_command": "sudo {{.Path}}"
+    }]
+}

@@ -1,0 +1,17 @@
+{
+    "builders": [{
+        "type": "googlecompute",
+        "project_id": "infra-258109",
+        "image_name": "nodejs-full-{{timestamp}}",
+        "image_family": "nodejs-full",
+        "source_image_family": "nodejs-base",
+        "zone": "europe-west4-b",
+        "ssh_username": "appuser",
+        "machine_type": "f1-micro"
+    }],
+    "provisioners": [{
+        "type": "shell",
+        "script": "scripts/deploy.sh",
+        "execute_command": "sudo {{.Path}}"
+    }]
+}
