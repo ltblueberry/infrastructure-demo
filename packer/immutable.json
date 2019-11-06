@@ -4,6 +4,7 @@
         "project_id": "infra-258109",
         "image_name": "nodejs-full-{{timestamp}}",
         "image_family": "nodejs-full",
+        "image_description": "Image with \"baked\" application sources, insta run application, based on nodejs-full image",
         "source_image_family": "nodejs-base",
         "zone": "europe-west4-b",
         "ssh_username": "appuser",

@@ -4,6 +4,7 @@
         "project_id": "infra-258109",
         "image_name": "nodejs-base-{{timestamp}}",
         "image_family": "nodejs-base",
+        "image_description": "Base image with installed NodeJS 13.x and MongoDB latest, based on Ubuntu 16.04-lts image",
         "source_image_family": "ubuntu-1604-lts",
         "zone": "europe-west4-b",
         "ssh_username": "appuser",
