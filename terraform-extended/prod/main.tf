@@ -4,6 +4,13 @@ provider "google" {
   region  = "${var.region}"
 }
 
+terraform {
+  backend "gcs" {
+    bucket  = "demo-89p13-terraform-state"
+    prefix  = "production"
+  }
+}
+
 module "app" {
   source = "../modules/app"
   env_name = "${var.env_name}"
