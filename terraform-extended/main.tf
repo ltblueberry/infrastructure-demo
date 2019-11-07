@@ -3,3 +3,25 @@ provider "google" {
   project = "${var.project}"
   region  = "${var.region}"
 }
+
+module "app" {
+  source = "modules/app"
+  zone = "${var.zone}" 
+  public_key_path = "${var.public_key_path}" 
+  app_disk_image = "${var.app_disk_image}"
+  app_tag = "${var.app_tag}"
+}
+
+
+module "db" {
+  source = "modules/db"
+  zone = "${var.zone}" 
+  public_key_path = "${var.public_key_path}" 
+  app_tag = "${var.app_tag}"
+  db_disk_image = "${var.db_disk_image}"
+  db_tag = "${var.db_tag}"
+}
+
+module "vpc" {
+  source = "modules/vpc"
+}

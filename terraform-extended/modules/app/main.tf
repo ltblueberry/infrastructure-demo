@@ -25,31 +25,10 @@ resource "google_compute_instance" "dummy_app" {
   metadata {
     ssh-keys = "appuser:${file(var.public_key_path)}"
   }
-
-  connection {
-    type        = "ssh"
-    user        = "appuser"
-    agent       = "false"
-    private_key = "${file(var.private_key_path)}"
-  }
-
-  provisioner "remote-exec" {
-    script = "files/deploy.sh"
-  }
-
-  provisioner "remote-exec" {
-    inline = [
-      "sed -i -e 's/<mongodb_ip_address>/${google_compute_instance.dummy_db.network_interface.0.network_ip}/g' ~/app/app.yml"
-    ]
-  }
-
-  provisioner "remote-exec" {
-    script = "files/start.sh"
-  }
 }
 
 resource "google_compute_firewall" "firewall_app" {
-  name    = "default-app-allow"
+  name    = "default-allow-app"
   network = "default"
 
   allow {

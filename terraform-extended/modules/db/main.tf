@@ -1,3 +1,4 @@
+
 resource "google_compute_instance" "dummy_db" {
   name         = "dummy-db"
   machine_type = "g1-small"
@@ -22,7 +23,7 @@ resource "google_compute_instance" "dummy_db" {
 }
 
 resource "google_compute_firewall" "firewall_mongo" {
-  name    = "default-mongo-allow"
+  name    = "default-allow-mongo"
   network = "default"
 
   allow {
