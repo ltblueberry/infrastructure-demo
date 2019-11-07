@@ -36,10 +36,20 @@ resource "google_compute_instance" "dummy_app" {
   provisioner "remote-exec" {
     script = "files/deploy.sh"
   }
+
+  provisioner "remote-exec" {
+    inline = [
+      "sed -i -e 's/<mongodb_ip_address>/${google_compute_instance.dummy_db.network_interface.0.network_ip}/g' ~/app/app.yml"
+    ]
+  }
+
+  provisioner "remote-exec" {
+    script = "files/start.sh"
+  }
 }
 
 resource "google_compute_firewall" "firewall_app" {
-  name    = "allow-app-default"
+  name    = "default-app-allow"
   network = "default"
 
   allow {

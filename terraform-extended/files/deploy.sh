@@ -1,4 +1,5 @@
 #!/bin/sh
+set -e
 
 sudo apt-get install -y unzip
 
@@ -15,9 +16,3 @@ sudo systemctl enable pm2-root
 cd ~/app
 npm install
 
-# Start application
-sudo pm2 start bin/www --name "dummy" --log log/application.log
-sleep 3
-
-# Save PM2 process
-sudo pm2 save

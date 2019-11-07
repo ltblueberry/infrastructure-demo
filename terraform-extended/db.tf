@@ -22,7 +22,7 @@ resource "google_compute_instance" "dummy_db" {
 }
 
 resource "google_compute_firewall" "firewall_mongo" {
-  name    = "allow-mongo-default"
+  name    = "default-mongo-allow"
   network = "default"
 
   allow {
