@@ -116,3 +116,22 @@ After `terraform apply` command you can check application running with **<instan
 
 **Conclusion**
 I made terraform infrastructure for my gcloud, where I create Firewall rule; create compute instance from my Fry image, maded via Packer; add SSH-key to appuser; excute deploy.sh script remotely.
+
+## **terraform-extended**
+Another terraform example, but i decided to separate db and app to different instances. I made directory **packer-fry-template** and created **fry.json** template to use it with different var-files to make fry images with NodeJS and MongoDB.
+Make images with next commands
+```
+packer build -var "project_id=infra-258109" -var-file=mongo-variables.json fry.json 
+packer build -var "project_id=infra-258109" -var-file=nodejs-variables.json fry.json 
+```
+
+Directory **terraform-extended** contains of next subdirectories
+* **modules** - I made **app**, **db** and **vpc** modules
+* **prod** - "Production" environment, contains of modules
+* **stage** - "Staging" environment, contains of modules
+
+Execute `terraform init` in env subdirectory and then `terraform apply`.
+To import modules execute `terraform get`.
+
+**Conclusion**
+I learned how to deal with modules and reuse modules. **I deleted script provisioners** to replace them with **ansible provisioners** in future.
