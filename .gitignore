@@ -32,3 +32,5 @@ packer/variables.json
 *.tfvars
 terraform/.terraform/
 terraform-extended/.terraform/
+terraform-extended/stage/.terraform/
+terraform-extended/prod/.terraform/

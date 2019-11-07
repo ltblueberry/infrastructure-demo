@@ -1,12 +1,12 @@
 resource "google_compute_address" "app_ip" {
-  name = "dummy-app-ip"
+  name = "${var.env_name}-dummy-app-ip"
 }
 
 resource "google_compute_instance" "dummy_app" {
-  name         = "dummy-app"
+  name         = "${var.env_name}-dummy-app"
   machine_type = "g1-small"
   zone         = "${var.zone}"
-  tags         = ["${var.app_tag}"]
+  tags         = ["${var.env_name}-${var.app_tag}"]
 
   boot_disk {
     initialize_params {
@@ -28,7 +28,7 @@ resource "google_compute_instance" "dummy_app" {
 }
 
 resource "google_compute_firewall" "firewall_app" {
-  name    = "default-allow-app"
+  name    = "default-allow-app-${var.env_name}"
   network = "default"
 
   allow {
@@ -37,5 +37,5 @@ resource "google_compute_firewall" "firewall_app" {
   }
 
   source_ranges = ["0.0.0.0/0"]
-  target_tags   = ["${var.app_tag}"]
+  target_tags   = ["${var.env_name}-${var.app_tag}"]
 }

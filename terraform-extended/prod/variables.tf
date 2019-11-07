@@ -37,3 +37,8 @@ variable db_disk_image {
 variable db_tag {
   description = "DB instance tag"
 }
+
+variable env_name {
+  description = "Environment name"
+  default = "prod"
+}

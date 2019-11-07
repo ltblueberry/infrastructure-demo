@@ -1,3 +1,7 @@
+variable env_name {
+  description = "Environment name"
+}
+
 variable zone {
   description = "Zone"
   default     = "europe-west4-b"

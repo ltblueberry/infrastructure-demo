@@ -1,9 +1,9 @@
 
 resource "google_compute_instance" "dummy_db" {
-  name         = "dummy-db"
+  name         = "${var.env_name}-dummy-db"
   machine_type = "g1-small"
   zone         = "${var.zone}"
-  tags         = ["${var.db_tag}"]
+  tags         = ["${var.env_name}-${var.db_tag}"]
 
   boot_disk {
     initialize_params {
@@ -23,7 +23,7 @@ resource "google_compute_instance" "dummy_db" {
 }
 
 resource "google_compute_firewall" "firewall_mongo" {
-  name    = "default-allow-mongo"
+  name    = "default-allow-mongo-${var.env_name}"
   network = "default"
 
   allow {
@@ -32,6 +32,6 @@ resource "google_compute_firewall" "firewall_mongo" {
     ports = ["27017"]
   }
 
-  target_tags = ["${var.db_tag}"]
-  source_tags = ["${var.app_tag}"]
+  target_tags = ["${var.env_name}-${var.db_tag}"]
+  source_tags = ["${var.env_name}-${var.app_tag}"]
 }

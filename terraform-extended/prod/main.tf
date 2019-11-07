@@ -5,7 +5,8 @@ provider "google" {
 }
 
 module "app" {
-  source = "modules/app"
+  source = "../modules/app"
+  env_name = "${var.env_name}"
   zone = "${var.zone}" 
   public_key_path = "${var.public_key_path}" 
   app_disk_image = "${var.app_disk_image}"
@@ -14,7 +15,8 @@ module "app" {
 
 
 module "db" {
-  source = "modules/db"
+  source = "../modules/db"
+  env_name = "${var.env_name}"
   zone = "${var.zone}" 
   public_key_path = "${var.public_key_path}" 
   app_tag = "${var.app_tag}"
@@ -23,5 +25,6 @@ module "db" {
 }
 
 module "vpc" {
-  source = "modules/vpc"
+  source = "../modules/vpc"
+  source_ranges = ["0.0.0.0/0"]
 }
