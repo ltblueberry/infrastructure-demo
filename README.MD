@@ -126,9 +126,12 @@ packer build -var "project_id=infra-258109" -var-file=nodejs-variables.json fry.
 ```
 
 Directory **terraform-extended** contains of next subdirectories
+* **backend-bucket** - Make gcs bucket for terraform state backend
 * **modules** - I made **app**, **db** and **vpc** modules
 * **prod** - "Production" environment, contains of modules
 * **stage** - "Staging" environment, contains of modules
+
+**Firstly** execute `terraform init` in **backend-bucket** and then `terraform apply`. Other **stage** and **prod** terraform states will be stored in created bucket.
 
 Execute `terraform init` in env subdirectory and then `terraform apply`.
 To import modules execute `terraform get`.
