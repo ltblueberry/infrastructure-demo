@@ -1,0 +1,5 @@
+{
+    "image_description": "Ubuntu 16.04 with NodeJS 13.x",
+    "image_family": "nodejs-base",
+    "script_name": "install_nodejs.sh"
+}

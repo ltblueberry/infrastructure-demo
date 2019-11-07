@@ -1,0 +1,5 @@
+{
+    "image_description": "Ubuntu 16.04 with MongoDB latest",
+    "image_family": "mongo-db-base",
+    "script_name": "install_mongodb.sh"
+}

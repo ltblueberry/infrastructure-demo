@@ -31,3 +31,4 @@ packer/variables.json
 *.tfstate.backup
 *.tfvars
 terraform/.terraform/
+terraform-extended/.terraform/
