@@ -35,3 +35,6 @@ terraform-extended/.terraform/
 terraform-extended/stage/.terraform/
 terraform-extended/prod/.terraform/
 terraform-extended/backend-bucket/.terraform/
+
+# Ansible
+*.retry

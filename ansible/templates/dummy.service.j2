@@ -1,0 +1,16 @@
+[Unit]
+Description=Dummy Application
+After=network-online.target
+
+[Service]
+Environment=DATABASE_CONNECTION_STRING=mongodb://{{ db_internal_ip }}:27017/dummy
+Type=simple
+User=appuser
+ExecStart=/usr/bin/node /home/appuser/app/bin/www
+Restart=on-failure
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=dummy
+
+[Install]
+WantedBy=multi-user.target  
