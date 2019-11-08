@@ -146,3 +146,14 @@ I learned how to deal with modules and reuse modules. **I deleted script provisi
 ## **ansible**
 
 In branch **ansible1** I configured ansible (made **ansible.cfg**), made **requirements.txt** to keep all dependencies in project, made simple inventory file with my hosts, that I got from `terraform apply` and made simple playbook that clones my dummy git repo to app server.
+
+In branch **ansible2** I made playbooks for configuration mongo service (mongo is available in private network), added service for application, and deployed code.
+
+Also, I made playbooks for packer and packer templates with these ansible provisioners.
+
+Now I can run next steps
+1) Build images with Packer and ansible provisioners. I make image for instance with MongoDB LTS and image for instance with NodeJS 13.x.
+2) Apply my infrastructure to gcloud with Terraform. I use my custom images from previous step.
+3) **Get external IP addresses of my app and db instance and private IP address of db instance**. I need them in Ansible playbooks and hosts. *Didn't automated it yet.*
+4) Execute Ansible playbooks **dummy_app.yml**, **dummy_db.yml**, **deploy.yml**
+
