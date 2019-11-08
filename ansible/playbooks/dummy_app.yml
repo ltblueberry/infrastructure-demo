@@ -4,3 +4,4 @@
   
   roles:
     - dummy-app
+    - nginxinc.nginx
