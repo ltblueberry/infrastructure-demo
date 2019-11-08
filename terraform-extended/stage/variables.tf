@@ -31,7 +31,7 @@ variable app_tag {
 
 variable db_disk_image {
   description = "Disk image for mongodb"
-  default     = "mongo-db-base"
+  default     = "mongo-base"
 }
 
 variable db_tag {
@@ -40,5 +40,5 @@ variable db_tag {
 
 variable env_name {
   description = "Environment name"
-  default = "stage"
+  default     = "stage"
 }

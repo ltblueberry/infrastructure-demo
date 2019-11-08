@@ -17,7 +17,7 @@ variable app_tag {
 
 variable db_disk_image {
   description = "Disk image for mongodb"
-  default     = "mongo-db-base"
+  default     = "mongo-base"
 }
 
 variable db_tag {
