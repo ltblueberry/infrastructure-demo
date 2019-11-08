@@ -1,0 +1,8 @@
+---
+- name: Clone git project
+  hosts: app
+  tasks:
+    - name: Clone dummy project repo
+      git:
+        repo: https://github.com/ltblueberry/dummy-node-mongo.git
+        dest: /home/appuser/app
