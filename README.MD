@@ -27,6 +27,7 @@ Added new scripts:
 * **create-firewall-rule.sh** - Create Firewall rule to allow all incoming traffic on TCP port 3000 for "dummy-server" taged instances 
 
 **Conclusion**
+
 Firstly I prepared scripts to install all packages that I need. Then I created gcloud compute instance via GUI. Created firewall rule. Then I connected to instance via SSH and executed scripts.
 
 But then I made startup script, install and authorized in **gcloud**, made script for instance and rule creating and executed them. 
@@ -66,6 +67,7 @@ To create instance from Bake image execute next script
 ```
 
 **Conclusion**
+
 I made several Packer templates, built them and got images, that i can use via **GUI** or `gcloud compute instance create` command. I made script that create gcloud compute instance from my Bake image.
 
 
@@ -115,6 +117,7 @@ terraform output your_variable
 After `terraform apply` command you can check application running with **<instance_ip_address_from_output_variable>:3000**
 
 **Conclusion**
+
 I made terraform infrastructure for my gcloud, where I create Firewall rule; create compute instance from my Fry image, maded via Packer; add SSH-key to appuser; excute deploy.sh script remotely.
 
 ## **terraform-extended**
@@ -137,4 +140,9 @@ Execute `terraform init` in env subdirectory and then `terraform apply`.
 To import modules execute `terraform get`.
 
 **Conclusion**
+
 I learned how to deal with modules and reuse modules. **I deleted script provisioners** to replace them with **ansible provisioners** in future.
+
+## **ansible**
+
+In branch **ansible1** I configured ansible (made **ansible.cfg**), made **requirements.txt** to keep all dependencies in project, made simple inventory file with my hosts, that I got from `terraform apply` and made simple playbook that clones my dummy git repo to app server.
