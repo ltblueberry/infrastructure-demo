@@ -26,6 +26,6 @@
     }],
     "provisioners": [{
         "type": "ansible",
-        "playbook_file": "ansible/packer_mongo.yml"
+        "playbook_file": "ansible/playbooks/packer_mongo.yml"
     }]
 }
