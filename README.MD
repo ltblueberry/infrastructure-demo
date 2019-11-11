@@ -6,6 +6,7 @@ I use my [dummy project](https://github.com/ltblueberry/dummy-node-mongo) as dep
 * [gcloud](https://cloud.google.com/sdk/gcloud/)
 * [Packer](https://www.packer.io)
 * [Terraform](https://www.terraform.io)
+* VirtualBox and [Vagrant](https://www.vagrantup.com)
 
 ## **simple-deploy**
 It's the first directory of this project. It contains of several simple scripts:
