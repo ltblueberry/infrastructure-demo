@@ -3,13 +3,5 @@
   debug:
     msg: "WARNING! This host is in {{ env }} environment"
 
-- name: Add unit file for dummy application
-  template:
-    src: dummy.service.j2
-    dest: /etc/systemd/system/dummy.service
-  notify: restart dummy
-
-- name: enable dummy
-  systemd: 
-    name: dummy
-    enabled: yes
+- include: install.yml
+- include: config.yml

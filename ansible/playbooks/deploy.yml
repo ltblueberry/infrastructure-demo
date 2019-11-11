@@ -5,12 +5,12 @@
     - name: Fetch the latest version of application code
       git:
         repo: https://github.com/ltblueberry/dummy-node-mongo.git
-        dest: /home/appuser/app
+        dest: /home/{{ deploy_user }}/app
         version: master
 
     - name: Install packages based on package.json.
       npm:
-        path: /home/appuser/app
+        path: /home/{{ deploy_user }}/app
       notify: restart dummy
 
   handlers:

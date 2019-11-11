@@ -1,0 +1,11 @@
+---
+- name: Add unit file for dummy application
+  template:
+    src: dummy.service.j2
+    dest: /etc/systemd/system/dummy.service
+  notify: restart dummy
+
+- name: enable dummy
+  systemd: 
+    name: dummy
+    enabled: yes
