@@ -6,7 +6,7 @@ auth_kind: serviceaccount
 zones:
   - "europe-west4-b"
 filters:
-  - name = "stage-dummy-app" OR  name = "stage-dummy-db" 
+  - name = "prod-dummy-app" OR  name = "prod-dummy-db" 
 scopes:
   - 'https://www.googleapis.com/auth/compute.readonly'
 groups:

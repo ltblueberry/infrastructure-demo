@@ -1,4 +1,4 @@
-db_internal_ip: 10.164.15.193
+db_internal_ip: "{{ hostvars['prod-dummy-db']['networkInterfaces'][0]['networkIP'] }}"
 
 nginx_http_template_enable: true
 nginx_http_template:
