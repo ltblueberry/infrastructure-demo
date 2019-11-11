@@ -5,8 +5,8 @@ After=network-online.target
 [Service]
 Environment=DATABASE_CONNECTION_STRING=mongodb://{{ db_internal_ip }}:27017/dummy
 Type=simple
-User=appuser
-ExecStart=/usr/bin/node /home/appuser/app/bin/www
+User={{ deploy_user }}
+ExecStart=/usr/bin/node /home/{{ deploy_user }}/app/bin/www
 Restart=on-failure
 StandardOutput=syslog
 StandardError=syslog

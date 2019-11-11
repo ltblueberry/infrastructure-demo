@@ -6,6 +6,7 @@ I use my [dummy project](https://github.com/ltblueberry/dummy-node-mongo) as dep
 * [gcloud](https://cloud.google.com/sdk/gcloud/)
 * [Packer](https://www.packer.io)
 * [Terraform](https://www.terraform.io)
+* VirtualBox and [Vagrant](https://www.vagrantup.com)
 
 ## **simple-deploy**
 It's the first directory of this project. It contains of several simple scripts:
@@ -181,4 +182,28 @@ ansible-playbook playbooks/site.yml
 
 ansible-playbook -i environments/prod/inventory.gcp.yml playbooks/site.yml --check
 ansible-playbook -i environments/prod/inventory.gcp.yml playbooks/site.yml
+```
+
+In branch **ansible4** I tried Vagrant with ansible provisioners, changed playbooks and roles to use it with vagrant, added molecule test for dummy-db role and updated packer templates in "packer-ansible" directory.
+
+```
+# in directory with dummy-db role
+
+molecule init scenario --scenario-name default -r dummy-db -d vagrant
+```
+
+```
+# create test VM
+molecule create
+
+# VM list
+molecule list
+```
+
+```
+# apply playbook to test VM
+molecule converge
+
+# run tests
+molecule verify
 ```

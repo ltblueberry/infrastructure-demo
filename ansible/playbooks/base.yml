@@ -1,0 +1,10 @@
+---
+- name: Install Python if needed
+  hosts: all
+  gather_facts: false
+  become: true
+
+  tasks:
+    - name: Install Python
+      raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
+      changed_when: false
