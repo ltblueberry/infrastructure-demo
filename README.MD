@@ -124,8 +124,8 @@ I made terraform infrastructure for my gcloud, where I create Firewall rule; cre
 Another terraform example, but i decided to separate db and app to different instances. I made directory **packer-fry-template** and created **fry.json** template to use it with different var-files to make fry images with NodeJS and MongoDB.
 Make images with next commands
 ```
-packer build -var "project_id=infra-258109" -var-file=mongo-variables.json fry.json 
-packer build -var "project_id=infra-258109" -var-file=nodejs-variables.json fry.json 
+packer build -var "project_id=<gcp_project_id>" -var-file=mongo-variables.json fry.json 
+packer build -var "project_id=<gcp_project_id>" -var-file=nodejs-variables.json fry.json 
 ```
 
 Directory **terraform-extended** contains of next subdirectories
@@ -157,3 +157,28 @@ Now I can run next steps
 3) **Get external IP addresses of my app and db instance and private IP address of db instance**. I need them in Ansible playbooks and hosts. *Didn't automated it yet.*
 4) Execute Ansible playbooks **dummy_app.yml**, **dummy_db.yml**, **deploy.yml**
 
+In branch **ansible3** I reorganize ansible directory structure, added **nginx** role, made some changes to terraform configuration, opened 80 port for internet traffic, and **added dynamic gcp inventories** for stage and prod environments.
+
+So, now i can run next steps
+1) Build images with Packer and ansible provisioners. I make image for instance with MongoDB LTS and image for instance with NodeJS 13.x.
+```
+# execute from git root directory, because we have /ansible provisioners paths
+
+packer validate -var "project_id=<gcp_project_id>" packer-ansible/nodejs-base.json 
+packer validate -var "project_id=<gcp_project_id>" packer-ansible/mongo-base.json
+```
+2) Apply my infrastructure to gcloud with Terraform. I use my custom images from previous step.
+```
+terraform init
+terraform import # get default-allow-ssh from default cloud firewall
+terraform plan
+terraform apply
+```
+3) Execute Ansible playbook **site.yml** for stage or prod environments.
+```
+ansible-playbook playbooks/site.yml --check
+ansible-playbook playbooks/site.yml
+
+ansible-playbook -i environments/prod/inventory.gcp.yml playbooks/site.yml --check
+ansible-playbook -i environments/prod/inventory.gcp.yml playbooks/site.yml
+```

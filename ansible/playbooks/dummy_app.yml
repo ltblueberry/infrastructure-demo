@@ -1,0 +1,7 @@
+- name: Configure dummy application
+  hosts: app
+  become: true
+  
+  roles:
+    - dummy-app
+    - nginxinc.nginx

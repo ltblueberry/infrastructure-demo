@@ -39,3 +39,16 @@ resource "google_compute_firewall" "firewall_app" {
   source_ranges = ["0.0.0.0/0"]
   target_tags   = ["${var.env_name}-${var.app_tag}"]
 }
+
+resource "google_compute_firewall" "firewall_nginx" {
+  name    = "default-allow-nginx-${var.env_name}"
+  network = "default"
+
+  allow {
+    protocol = "tcp"
+    ports    = ["80"]
+  }
+
+  source_ranges = ["0.0.0.0/0"]
+  target_tags   = ["${var.env_name}-${var.app_tag}"]
+}
